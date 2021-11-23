@@ -127,3 +127,62 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player_name)
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  player_stats = all_players.select do |player|
+  player[:player_name] == player_name
+  
+end
+player_stats[0][:points]
+end
+
+
+def shoe_size(player_name)
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  player_shoes = all_players.select do |player|
+    player[:player_name] == player_name
+  end
+  player_shoes[0][:shoe]
+end
+
+
+def team_colors(team_name)
+  if team_name == "Brooklyn Nets"
+    game_hash[:home][:colors]
+  elsif team_name == "Charlotte Hornets"
+    game_hash[:away][:colors]
+  end
+end
+
+def team_names
+  teams = [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
+
+def player_numbers(team_name)
+  if team_name == 'Brooklyn Nets'
+    brooklyn_numbers = game_hash[:home][:players].map {|player_number|
+      player_number[:number]}
+      elsif team_name == 'Charlotte Hornets'
+        charlotte_numbers = game_hash[:away][:players].map {|player_number|
+          player_number[:number]}
+      end
+end
+
+def player_stats(player_name)
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  player_stats = all_players.select do |player|
+  player[:player_name] == player_name
+  
+end
+player_stats[0]
+end
+
+def big_shoe_rebounds
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  max_shoe = all_players.map {|player| player[:shoe]}.max
+  all_players.select {|player| player[:shoe] == max_shoe}[0][:rebounds]
+  
+end
+
+puts big_shoe_rebounds
